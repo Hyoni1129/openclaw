@@ -139,14 +139,14 @@ function emitStruct(name: string, schema: JsonSchema): string {
           return `        ${propName}: ${swiftType(prop, true)}${req ? "" : "?"}`;
         })
         .join(",\n") +
-      "\n    ) {\n" +
+      ",\n    ) {\n" +
       Object.entries(props)
         .map(([key]) => {
           const propName = safeName(key);
           return `        self.${propName} = ${propName}`;
         })
         .join("\n") +
-      "\n    }\n" +
+      "\n    }\n\n" +
       "    private enum CodingKeys: String, CodingKey {\n" +
       codingKeys.join("\n") +
       "\n    }\n}",
