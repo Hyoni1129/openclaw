@@ -719,8 +719,7 @@ public struct NodePairRequestParams: Codable, Sendable {
     }
 }
 
-public struct NodePairListParams: Codable, Sendable {
-}
+public struct NodePairListParams: Codable, Sendable {}
 
 public struct NodePairApproveParams: Codable, Sendable {
     public let requestid: String
@@ -786,8 +785,7 @@ public struct NodeRenameParams: Codable, Sendable {
     }
 }
 
-public struct NodeListParams: Codable, Sendable {
-}
+public struct NodeListParams: Codable, Sendable {}
 
 public struct NodeDescribeParams: Codable, Sendable {
     public let nodeid: String
@@ -1153,8 +1151,7 @@ public struct SessionsCompactParams: Codable, Sendable {
     }
 }
 
-public struct ConfigGetParams: Codable, Sendable {
-}
+public struct ConfigGetParams: Codable, Sendable {}
 
 public struct ConfigSetParams: Codable, Sendable {
     public let raw: String
@@ -1234,8 +1231,7 @@ public struct ConfigPatchParams: Codable, Sendable {
     }
 }
 
-public struct ConfigSchemaParams: Codable, Sendable {
-}
+public struct ConfigSchemaParams: Codable, Sendable {}
 
 public struct ConfigSchemaResponse: Codable, Sendable {
     public let schema: AnyCodable
@@ -1771,8 +1767,7 @@ public struct AgentsFilesSetResult: Codable, Sendable {
     }
 }
 
-public struct AgentsListParams: Codable, Sendable {
-}
+public struct AgentsListParams: Codable, Sendable {}
 
 public struct AgentsListResult: Codable, Sendable {
     public let defaultid: String
@@ -1830,8 +1825,7 @@ public struct ModelChoice: Codable, Sendable {
     }
 }
 
-public struct ModelsListParams: Codable, Sendable {
-}
+public struct ModelsListParams: Codable, Sendable {}
 
 public struct ModelsListResult: Codable, Sendable {
     public let models: [ModelChoice]
@@ -1861,8 +1855,7 @@ public struct SkillsStatusParams: Codable, Sendable {
     }
 }
 
-public struct SkillsBinsParams: Codable, Sendable {
-}
+public struct SkillsBinsParams: Codable, Sendable {}
 
 public struct SkillsBinsResult: Codable, Sendable {
     public let bins: [String]
@@ -2006,8 +1999,7 @@ public struct CronListParams: Codable, Sendable {
     }
 }
 
-public struct CronStatusParams: Codable, Sendable {
-}
+public struct CronStatusParams: Codable, Sendable {}
 
 public struct CronAddParams: Codable, Sendable {
     public let name: String
@@ -2161,8 +2153,7 @@ public struct LogsTailResult: Codable, Sendable {
     }
 }
 
-public struct ExecApprovalsGetParams: Codable, Sendable {
-}
+public struct ExecApprovalsGetParams: Codable, Sendable {}
 
 public struct ExecApprovalsSetParams: Codable, Sendable {
     public let file: [String: AnyCodable]
@@ -2312,8 +2303,7 @@ public struct ExecApprovalResolveParams: Codable, Sendable {
     }
 }
 
-public struct DevicePairListParams: Codable, Sendable {
-}
+public struct DevicePairListParams: Codable, Sendable {}
 
 public struct DevicePairApproveParams: Codable, Sendable {
     public let requestid: String
@@ -2686,11 +2676,11 @@ public enum GatewayFrame: Codable, Sendable {
         let type = try typeContainer.decode(String.self, forKey: .type)
         switch type {
         case "req":
-            self = .req(try RequestFrame(from: decoder))
+            self = try .req(RequestFrame(from: decoder))
         case "res":
-            self = .res(try ResponseFrame(from: decoder))
+            self = try .res(ResponseFrame(from: decoder))
         case "event":
-            self = .event(try EventFrame(from: decoder))
+            self = try .event(EventFrame(from: decoder))
         default:
             let container = try decoder.singleValueContainer()
             let raw = try container.decode([String: AnyCodable].self)
@@ -2700,13 +2690,15 @@ public enum GatewayFrame: Codable, Sendable {
 
     public func encode(to encoder: Encoder) throws {
         switch self {
-        case .req(let v): try v.encode(to: encoder)
-        case .res(let v): try v.encode(to: encoder)
-        case .event(let v): try v.encode(to: encoder)
-        case .unknown(_, let raw):
+        case let .req(v):
+            try v.encode(to: encoder)
+        case let .res(v):
+            try v.encode(to: encoder)
+        case let .event(v):
+            try v.encode(to: encoder)
+        case let .unknown(_, raw):
             var container = encoder.singleValueContainer()
             try container.encode(raw)
         }
     }
-
 }
