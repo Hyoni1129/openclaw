@@ -39,8 +39,8 @@ public struct ConnectParams: Codable, Sendable {
         device: [String: AnyCodable]?,
         auth: [String: AnyCodable]?,
         locale: String?,
-        useragent: String?,
-    ) {
+        useragent: String?)
+    {
         self.minprotocol = minprotocol
         self.maxprotocol = maxprotocol
         self.client = client
@@ -91,8 +91,8 @@ public struct HelloOk: Codable, Sendable {
         snapshot: Snapshot,
         canvashosturl: String?,
         auth: [String: AnyCodable]?,
-        policy: [String: AnyCodable],
-    ) {
+        policy: [String: AnyCodable])
+    {
         self.type = type
         self._protocol = _protocol
         self.server = server
@@ -125,8 +125,8 @@ public struct RequestFrame: Codable, Sendable {
         type: String,
         id: String,
         method: String,
-        params: AnyCodable?,
-    ) {
+        params: AnyCodable?)
+    {
         self.type = type
         self.id = id
         self.method = method
@@ -153,8 +153,8 @@ public struct ResponseFrame: Codable, Sendable {
         id: String,
         ok: Bool,
         payload: AnyCodable?,
-        error: [String: AnyCodable]?,
-    ) {
+        error: [String: AnyCodable]?)
+    {
         self.type = type
         self.id = id
         self.ok = ok
@@ -183,8 +183,8 @@ public struct EventFrame: Codable, Sendable {
         event: String,
         payload: AnyCodable?,
         seq: Int?,
-        stateversion: [String: AnyCodable]?,
-    ) {
+        stateversion: [String: AnyCodable]?)
+    {
         self.type = type
         self.event = event
         self.payload = payload
@@ -235,8 +235,8 @@ public struct PresenceEntry: Codable, Sendable {
         deviceid: String?,
         roles: [String]?,
         scopes: [String]?,
-        instanceid: String?,
-    ) {
+        instanceid: String?)
+    {
         self.host = host
         self.ip = ip
         self.version = version
@@ -281,8 +281,8 @@ public struct StateVersion: Codable, Sendable {
 
     public init(
         presence: Int,
-        health: Int,
-    ) {
+        health: Int)
+    {
         self.presence = presence
         self.health = health
     }
@@ -309,8 +309,8 @@ public struct Snapshot: Codable, Sendable {
         uptimems: Int,
         configpath: String?,
         statedir: String?,
-        sessiondefaults: [String: AnyCodable]?,
-    ) {
+        sessiondefaults: [String: AnyCodable]?)
+    {
         self.presence = presence
         self.health = health
         self.stateversion = stateversion
@@ -343,8 +343,8 @@ public struct ErrorShape: Codable, Sendable {
         message: String,
         details: AnyCodable?,
         retryable: Bool?,
-        retryafterms: Int?,
-    ) {
+        retryafterms: Int?)
+    {
         self.code = code
         self.message = message
         self.details = details
@@ -373,8 +373,8 @@ public struct AgentEvent: Codable, Sendable {
         seq: Int,
         stream: String,
         ts: Int,
-        data: [String: AnyCodable],
-    ) {
+        data: [String: AnyCodable])
+    {
         self.runid = runid
         self.seq = seq
         self.stream = stream
@@ -411,8 +411,8 @@ public struct SendParams: Codable, Sendable {
         channel: String?,
         accountid: String?,
         sessionkey: String?,
-        idempotencykey: String,
-    ) {
+        idempotencykey: String)
+    {
         self.to = to
         self.message = message
         self.mediaurl = mediaurl
@@ -455,8 +455,8 @@ public struct PollParams: Codable, Sendable {
         durationhours: Int?,
         channel: String?,
         accountid: String?,
-        idempotencykey: String,
-    ) {
+        idempotencykey: String)
+    {
         self.to = to
         self.question = question
         self.options = options
@@ -527,8 +527,8 @@ public struct AgentParams: Codable, Sendable {
         extrasystemprompt: String?,
         idempotencykey: String,
         label: String?,
-        spawnedby: String?,
-    ) {
+        spawnedby: String?)
+    {
         self.message = message
         self.agentid = agentid
         self.to = to
@@ -587,8 +587,8 @@ public struct AgentIdentityParams: Codable, Sendable {
 
     public init(
         agentid: String?,
-        sessionkey: String?,
-    ) {
+        sessionkey: String?)
+    {
         self.agentid = agentid
         self.sessionkey = sessionkey
     }
@@ -609,8 +609,8 @@ public struct AgentIdentityResult: Codable, Sendable {
         agentid: String,
         name: String?,
         avatar: String?,
-        emoji: String?,
-    ) {
+        emoji: String?)
+    {
         self.agentid = agentid
         self.name = name
         self.avatar = avatar
@@ -631,8 +631,8 @@ public struct AgentWaitParams: Codable, Sendable {
 
     public init(
         runid: String,
-        timeoutms: Int?,
-    ) {
+        timeoutms: Int?)
+    {
         self.runid = runid
         self.timeoutms = timeoutms
     }
@@ -649,8 +649,8 @@ public struct WakeParams: Codable, Sendable {
 
     public init(
         mode: AnyCodable,
-        text: String,
-    ) {
+        text: String)
+    {
         self.mode = mode
         self.text = text
     }
@@ -687,8 +687,8 @@ public struct NodePairRequestParams: Codable, Sendable {
         caps: [String]?,
         commands: [String]?,
         remoteip: String?,
-        silent: Bool?,
-    ) {
+        silent: Bool?)
+    {
         self.nodeid = nodeid
         self.displayname = displayname
         self.platform = platform
@@ -725,8 +725,8 @@ public struct NodePairApproveParams: Codable, Sendable {
     public let requestid: String
 
     public init(
-        requestid: String,
-    ) {
+        requestid: String)
+    {
         self.requestid = requestid
     }
 
@@ -739,8 +739,8 @@ public struct NodePairRejectParams: Codable, Sendable {
     public let requestid: String
 
     public init(
-        requestid: String,
-    ) {
+        requestid: String)
+    {
         self.requestid = requestid
     }
 
@@ -755,8 +755,8 @@ public struct NodePairVerifyParams: Codable, Sendable {
 
     public init(
         nodeid: String,
-        token: String,
-    ) {
+        token: String)
+    {
         self.nodeid = nodeid
         self.token = token
     }
@@ -773,8 +773,8 @@ public struct NodeRenameParams: Codable, Sendable {
 
     public init(
         nodeid: String,
-        displayname: String,
-    ) {
+        displayname: String)
+    {
         self.nodeid = nodeid
         self.displayname = displayname
     }
@@ -791,8 +791,8 @@ public struct NodeDescribeParams: Codable, Sendable {
     public let nodeid: String
 
     public init(
-        nodeid: String,
-    ) {
+        nodeid: String)
+    {
         self.nodeid = nodeid
     }
 
@@ -813,8 +813,8 @@ public struct NodeInvokeParams: Codable, Sendable {
         command: String,
         params: AnyCodable?,
         timeoutms: Int?,
-        idempotencykey: String,
-    ) {
+        idempotencykey: String)
+    {
         self.nodeid = nodeid
         self.command = command
         self.params = params
@@ -845,8 +845,8 @@ public struct NodeInvokeResultParams: Codable, Sendable {
         ok: Bool,
         payload: AnyCodable?,
         payloadjson: String?,
-        error: [String: AnyCodable]?,
-    ) {
+        error: [String: AnyCodable]?)
+    {
         self.id = id
         self.nodeid = nodeid
         self.ok = ok
@@ -873,8 +873,8 @@ public struct NodeEventParams: Codable, Sendable {
     public init(
         event: String,
         payload: AnyCodable?,
-        payloadjson: String?,
-    ) {
+        payloadjson: String?)
+    {
         self.event = event
         self.payload = payload
         self.payloadjson = payloadjson
@@ -901,8 +901,8 @@ public struct NodeInvokeRequestEvent: Codable, Sendable {
         command: String,
         paramsjson: String?,
         timeoutms: Int?,
-        idempotencykey: String?,
-    ) {
+        idempotencykey: String?)
+    {
         self.id = id
         self.nodeid = nodeid
         self.command = command
@@ -943,8 +943,8 @@ public struct SessionsListParams: Codable, Sendable {
         label: String?,
         spawnedby: String?,
         agentid: String?,
-        search: String?,
-    ) {
+        search: String?)
+    {
         self.limit = limit
         self.activeminutes = activeminutes
         self.includeglobal = includeglobal
@@ -979,8 +979,8 @@ public struct SessionsPreviewParams: Codable, Sendable {
     public init(
         keys: [String],
         limit: Int?,
-        maxchars: Int?,
-    ) {
+        maxchars: Int?)
+    {
         self.keys = keys
         self.limit = limit
         self.maxchars = maxchars
@@ -1009,8 +1009,8 @@ public struct SessionsResolveParams: Codable, Sendable {
         agentid: String?,
         spawnedby: String?,
         includeglobal: Bool?,
-        includeunknown: Bool?,
-    ) {
+        includeunknown: Bool?)
+    {
         self.key = key
         self.sessionid = sessionid
         self.label = label
@@ -1063,8 +1063,8 @@ public struct SessionsPatchParams: Codable, Sendable {
         model: AnyCodable?,
         spawnedby: AnyCodable?,
         sendpolicy: AnyCodable?,
-        groupactivation: AnyCodable?,
-    ) {
+        groupactivation: AnyCodable?)
+    {
         self.key = key
         self.label = label
         self.thinkinglevel = thinkinglevel
@@ -1105,8 +1105,8 @@ public struct SessionsResetParams: Codable, Sendable {
     public let key: String
 
     public init(
-        key: String,
-    ) {
+        key: String)
+    {
         self.key = key
     }
 
@@ -1121,8 +1121,8 @@ public struct SessionsDeleteParams: Codable, Sendable {
 
     public init(
         key: String,
-        deletetranscript: Bool?,
-    ) {
+        deletetranscript: Bool?)
+    {
         self.key = key
         self.deletetranscript = deletetranscript
     }
@@ -1139,8 +1139,8 @@ public struct SessionsCompactParams: Codable, Sendable {
 
     public init(
         key: String,
-        maxlines: Int?,
-    ) {
+        maxlines: Int?)
+    {
         self.key = key
         self.maxlines = maxlines
     }
@@ -1159,8 +1159,8 @@ public struct ConfigSetParams: Codable, Sendable {
 
     public init(
         raw: String,
-        basehash: String?,
-    ) {
+        basehash: String?)
+    {
         self.raw = raw
         self.basehash = basehash
     }
@@ -1183,8 +1183,8 @@ public struct ConfigApplyParams: Codable, Sendable {
         basehash: String?,
         sessionkey: String?,
         note: String?,
-        restartdelayms: Int?,
-    ) {
+        restartdelayms: Int?)
+    {
         self.raw = raw
         self.basehash = basehash
         self.sessionkey = sessionkey
@@ -1213,8 +1213,8 @@ public struct ConfigPatchParams: Codable, Sendable {
         basehash: String?,
         sessionkey: String?,
         note: String?,
-        restartdelayms: Int?,
-    ) {
+        restartdelayms: Int?)
+    {
         self.raw = raw
         self.basehash = basehash
         self.sessionkey = sessionkey
@@ -1243,8 +1243,8 @@ public struct ConfigSchemaResponse: Codable, Sendable {
         schema: AnyCodable,
         uihints: [String: AnyCodable],
         version: String,
-        generatedat: String,
-    ) {
+        generatedat: String)
+    {
         self.schema = schema
         self.uihints = uihints
         self.version = version
@@ -1265,8 +1265,8 @@ public struct WizardStartParams: Codable, Sendable {
 
     public init(
         mode: AnyCodable?,
-        workspace: String?,
-    ) {
+        workspace: String?)
+    {
         self.mode = mode
         self.workspace = workspace
     }
@@ -1283,8 +1283,8 @@ public struct WizardNextParams: Codable, Sendable {
 
     public init(
         sessionid: String,
-        answer: [String: AnyCodable]?,
-    ) {
+        answer: [String: AnyCodable]?)
+    {
         self.sessionid = sessionid
         self.answer = answer
     }
@@ -1299,8 +1299,8 @@ public struct WizardCancelParams: Codable, Sendable {
     public let sessionid: String
 
     public init(
-        sessionid: String,
-    ) {
+        sessionid: String)
+    {
         self.sessionid = sessionid
     }
 
@@ -1313,8 +1313,8 @@ public struct WizardStatusParams: Codable, Sendable {
     public let sessionid: String
 
     public init(
-        sessionid: String,
-    ) {
+        sessionid: String)
+    {
         self.sessionid = sessionid
     }
 
@@ -1343,8 +1343,8 @@ public struct WizardStep: Codable, Sendable {
         initialvalue: AnyCodable?,
         placeholder: String?,
         sensitive: Bool?,
-        executor: AnyCodable?,
-    ) {
+        executor: AnyCodable?)
+    {
         self.id = id
         self.type = type
         self.title = title
@@ -1379,8 +1379,8 @@ public struct WizardNextResult: Codable, Sendable {
         done: Bool,
         step: [String: AnyCodable]?,
         status: AnyCodable?,
-        error: String?,
-    ) {
+        error: String?)
+    {
         self.done = done
         self.step = step
         self.status = status
@@ -1407,8 +1407,8 @@ public struct WizardStartResult: Codable, Sendable {
         done: Bool,
         step: [String: AnyCodable]?,
         status: AnyCodable?,
-        error: String?,
-    ) {
+        error: String?)
+    {
         self.sessionid = sessionid
         self.done = done
         self.step = step
@@ -1431,8 +1431,8 @@ public struct WizardStatusResult: Codable, Sendable {
 
     public init(
         status: AnyCodable,
-        error: String?,
-    ) {
+        error: String?)
+    {
         self.status = status
         self.error = error
     }
@@ -1449,8 +1449,8 @@ public struct TalkModeParams: Codable, Sendable {
 
     public init(
         enabled: Bool,
-        phase: String?,
-    ) {
+        phase: String?)
+    {
         self.enabled = enabled
         self.phase = phase
     }
@@ -1467,8 +1467,8 @@ public struct ChannelsStatusParams: Codable, Sendable {
 
     public init(
         probe: Bool?,
-        timeoutms: Int?,
-    ) {
+        timeoutms: Int?)
+    {
         self.probe = probe
         self.timeoutms = timeoutms
     }
@@ -1499,8 +1499,8 @@ public struct ChannelsStatusResult: Codable, Sendable {
         channelmeta: [[String: AnyCodable]]?,
         channels: [String: AnyCodable],
         channelaccounts: [String: AnyCodable],
-        channeldefaultaccountid: [String: AnyCodable],
-    ) {
+        channeldefaultaccountid: [String: AnyCodable])
+    {
         self.ts = ts
         self.channelorder = channelorder
         self.channellabels = channellabels
@@ -1531,8 +1531,8 @@ public struct ChannelsLogoutParams: Codable, Sendable {
 
     public init(
         channel: String,
-        accountid: String?,
-    ) {
+        accountid: String?)
+    {
         self.channel = channel
         self.accountid = accountid
     }
@@ -1553,8 +1553,8 @@ public struct WebLoginStartParams: Codable, Sendable {
         force: Bool?,
         timeoutms: Int?,
         verbose: Bool?,
-        accountid: String?,
-    ) {
+        accountid: String?)
+    {
         self.force = force
         self.timeoutms = timeoutms
         self.verbose = verbose
@@ -1575,8 +1575,8 @@ public struct WebLoginWaitParams: Codable, Sendable {
 
     public init(
         timeoutms: Int?,
-        accountid: String?,
-    ) {
+        accountid: String?)
+    {
         self.timeoutms = timeoutms
         self.accountid = accountid
     }
@@ -1595,8 +1595,8 @@ public struct AgentSummary: Codable, Sendable {
     public init(
         id: String,
         name: String?,
-        identity: [String: AnyCodable]?,
-    ) {
+        identity: [String: AnyCodable]?)
+    {
         self.id = id
         self.name = name
         self.identity = identity
@@ -1623,8 +1623,8 @@ public struct AgentsFileEntry: Codable, Sendable {
         missing: Bool,
         size: Int?,
         updatedatms: Int?,
-        content: String?,
-    ) {
+        content: String?)
+    {
         self.name = name
         self.path = path
         self.missing = missing
@@ -1647,8 +1647,8 @@ public struct AgentsFilesListParams: Codable, Sendable {
     public let agentid: String
 
     public init(
-        agentid: String,
-    ) {
+        agentid: String)
+    {
         self.agentid = agentid
     }
 
@@ -1665,8 +1665,8 @@ public struct AgentsFilesListResult: Codable, Sendable {
     public init(
         agentid: String,
         workspace: String,
-        files: [AgentsFileEntry],
-    ) {
+        files: [AgentsFileEntry])
+    {
         self.agentid = agentid
         self.workspace = workspace
         self.files = files
@@ -1685,8 +1685,8 @@ public struct AgentsFilesGetParams: Codable, Sendable {
 
     public init(
         agentid: String,
-        name: String,
-    ) {
+        name: String)
+    {
         self.agentid = agentid
         self.name = name
     }
@@ -1705,8 +1705,8 @@ public struct AgentsFilesGetResult: Codable, Sendable {
     public init(
         agentid: String,
         workspace: String,
-        file: AgentsFileEntry,
-    ) {
+        file: AgentsFileEntry)
+    {
         self.agentid = agentid
         self.workspace = workspace
         self.file = file
@@ -1727,8 +1727,8 @@ public struct AgentsFilesSetParams: Codable, Sendable {
     public init(
         agentid: String,
         name: String,
-        content: String,
-    ) {
+        content: String)
+    {
         self.agentid = agentid
         self.name = name
         self.content = content
@@ -1751,8 +1751,8 @@ public struct AgentsFilesSetResult: Codable, Sendable {
         ok: Bool,
         agentid: String,
         workspace: String,
-        file: AgentsFileEntry,
-    ) {
+        file: AgentsFileEntry)
+    {
         self.ok = ok
         self.agentid = agentid
         self.workspace = workspace
@@ -1779,8 +1779,8 @@ public struct AgentsListResult: Codable, Sendable {
         defaultid: String,
         mainkey: String,
         scope: AnyCodable,
-        agents: [AgentSummary],
-    ) {
+        agents: [AgentSummary])
+    {
         self.defaultid = defaultid
         self.mainkey = mainkey
         self.scope = scope
@@ -1807,8 +1807,8 @@ public struct ModelChoice: Codable, Sendable {
         name: String,
         provider: String,
         contextwindow: Int?,
-        reasoning: Bool?,
-    ) {
+        reasoning: Bool?)
+    {
         self.id = id
         self.name = name
         self.provider = provider
@@ -1831,8 +1831,8 @@ public struct ModelsListResult: Codable, Sendable {
     public let models: [ModelChoice]
 
     public init(
-        models: [ModelChoice],
-    ) {
+        models: [ModelChoice])
+    {
         self.models = models
     }
 
@@ -1845,8 +1845,8 @@ public struct SkillsStatusParams: Codable, Sendable {
     public let agentid: String?
 
     public init(
-        agentid: String?,
-    ) {
+        agentid: String?)
+    {
         self.agentid = agentid
     }
 
@@ -1861,8 +1861,8 @@ public struct SkillsBinsResult: Codable, Sendable {
     public let bins: [String]
 
     public init(
-        bins: [String],
-    ) {
+        bins: [String])
+    {
         self.bins = bins
     }
 
@@ -1879,8 +1879,8 @@ public struct SkillsInstallParams: Codable, Sendable {
     public init(
         name: String,
         installid: String,
-        timeoutms: Int?,
-    ) {
+        timeoutms: Int?)
+    {
         self.name = name
         self.installid = installid
         self.timeoutms = timeoutms
@@ -1903,8 +1903,8 @@ public struct SkillsUpdateParams: Codable, Sendable {
         skillkey: String,
         enabled: Bool?,
         apikey: String?,
-        env: [String: AnyCodable]?,
-    ) {
+        env: [String: AnyCodable]?)
+    {
         self.skillkey = skillkey
         self.enabled = enabled
         self.apikey = apikey
@@ -1949,8 +1949,8 @@ public struct CronJob: Codable, Sendable {
         wakemode: AnyCodable,
         payload: AnyCodable,
         isolation: [String: AnyCodable]?,
-        state: [String: AnyCodable],
-    ) {
+        state: [String: AnyCodable])
+    {
         self.id = id
         self.agentid = agentid
         self.name = name
@@ -1989,8 +1989,8 @@ public struct CronListParams: Codable, Sendable {
     public let includedisabled: Bool?
 
     public init(
-        includedisabled: Bool?,
-    ) {
+        includedisabled: Bool?)
+    {
         self.includedisabled = includedisabled
     }
 
@@ -2023,8 +2023,8 @@ public struct CronAddParams: Codable, Sendable {
         sessiontarget: AnyCodable,
         wakemode: AnyCodable,
         payload: AnyCodable,
-        isolation: [String: AnyCodable]?,
-    ) {
+        isolation: [String: AnyCodable]?)
+    {
         self.name = name
         self.agentid = agentid
         self.description = description
@@ -2071,8 +2071,8 @@ public struct CronRunLogEntry: Codable, Sendable {
         summary: String?,
         runatms: Int?,
         durationms: Int?,
-        nextrunatms: Int?,
-    ) {
+        nextrunatms: Int?)
+    {
         self.ts = ts
         self.jobid = jobid
         self.action = action
@@ -2105,8 +2105,8 @@ public struct LogsTailParams: Codable, Sendable {
     public init(
         cursor: Int?,
         limit: Int?,
-        maxbytes: Int?,
-    ) {
+        maxbytes: Int?)
+    {
         self.cursor = cursor
         self.limit = limit
         self.maxbytes = maxbytes
@@ -2133,8 +2133,8 @@ public struct LogsTailResult: Codable, Sendable {
         size: Int,
         lines: [String],
         truncated: Bool?,
-        reset: Bool?,
-    ) {
+        reset: Bool?)
+    {
         self.file = file
         self.cursor = cursor
         self.size = size
@@ -2161,8 +2161,8 @@ public struct ExecApprovalsSetParams: Codable, Sendable {
 
     public init(
         file: [String: AnyCodable],
-        basehash: String?,
-    ) {
+        basehash: String?)
+    {
         self.file = file
         self.basehash = basehash
     }
@@ -2177,8 +2177,8 @@ public struct ExecApprovalsNodeGetParams: Codable, Sendable {
     public let nodeid: String
 
     public init(
-        nodeid: String,
-    ) {
+        nodeid: String)
+    {
         self.nodeid = nodeid
     }
 
@@ -2195,8 +2195,8 @@ public struct ExecApprovalsNodeSetParams: Codable, Sendable {
     public init(
         nodeid: String,
         file: [String: AnyCodable],
-        basehash: String?,
-    ) {
+        basehash: String?)
+    {
         self.nodeid = nodeid
         self.file = file
         self.basehash = basehash
@@ -2219,8 +2219,8 @@ public struct ExecApprovalsSnapshot: Codable, Sendable {
         path: String,
         exists: Bool,
         hash: String,
-        file: [String: AnyCodable],
-    ) {
+        file: [String: AnyCodable])
+    {
         self.path = path
         self.exists = exists
         self.hash = hash
@@ -2257,8 +2257,8 @@ public struct ExecApprovalRequestParams: Codable, Sendable {
         agentid: AnyCodable?,
         resolvedpath: AnyCodable?,
         sessionkey: AnyCodable?,
-        timeoutms: Int?,
-    ) {
+        timeoutms: Int?)
+    {
         self.id = id
         self.command = command
         self.cwd = cwd
@@ -2291,8 +2291,8 @@ public struct ExecApprovalResolveParams: Codable, Sendable {
 
     public init(
         id: String,
-        decision: String,
-    ) {
+        decision: String)
+    {
         self.id = id
         self.decision = decision
     }
@@ -2309,8 +2309,8 @@ public struct DevicePairApproveParams: Codable, Sendable {
     public let requestid: String
 
     public init(
-        requestid: String,
-    ) {
+        requestid: String)
+    {
         self.requestid = requestid
     }
 
@@ -2323,8 +2323,8 @@ public struct DevicePairRejectParams: Codable, Sendable {
     public let requestid: String
 
     public init(
-        requestid: String,
-    ) {
+        requestid: String)
+    {
         self.requestid = requestid
     }
 
@@ -2341,8 +2341,8 @@ public struct DeviceTokenRotateParams: Codable, Sendable {
     public init(
         deviceid: String,
         role: String,
-        scopes: [String]?,
-    ) {
+        scopes: [String]?)
+    {
         self.deviceid = deviceid
         self.role = role
         self.scopes = scopes
@@ -2361,8 +2361,8 @@ public struct DeviceTokenRevokeParams: Codable, Sendable {
 
     public init(
         deviceid: String,
-        role: String,
-    ) {
+        role: String)
+    {
         self.deviceid = deviceid
         self.role = role
     }
@@ -2403,8 +2403,8 @@ public struct DevicePairRequestedEvent: Codable, Sendable {
         remoteip: String?,
         silent: Bool?,
         isrepair: Bool?,
-        ts: Int,
-    ) {
+        ts: Int)
+    {
         self.requestid = requestid
         self.deviceid = deviceid
         self.publickey = publickey
@@ -2449,8 +2449,8 @@ public struct DevicePairResolvedEvent: Codable, Sendable {
         requestid: String,
         deviceid: String,
         decision: String,
-        ts: Int,
-    ) {
+        ts: Int)
+    {
         self.requestid = requestid
         self.deviceid = deviceid
         self.decision = decision
@@ -2471,8 +2471,8 @@ public struct ChatHistoryParams: Codable, Sendable {
 
     public init(
         sessionkey: String,
-        limit: Int?,
-    ) {
+        limit: Int?)
+    {
         self.sessionkey = sessionkey
         self.limit = limit
     }
@@ -2499,8 +2499,8 @@ public struct ChatSendParams: Codable, Sendable {
         deliver: Bool?,
         attachments: [AnyCodable]?,
         timeoutms: Int?,
-        idempotencykey: String,
-    ) {
+        idempotencykey: String)
+    {
         self.sessionkey = sessionkey
         self.message = message
         self.thinking = thinking
@@ -2527,8 +2527,8 @@ public struct ChatAbortParams: Codable, Sendable {
 
     public init(
         sessionkey: String,
-        runid: String?,
-    ) {
+        runid: String?)
+    {
         self.sessionkey = sessionkey
         self.runid = runid
     }
@@ -2547,8 +2547,8 @@ public struct ChatInjectParams: Codable, Sendable {
     public init(
         sessionkey: String,
         message: String,
-        label: String?,
-    ) {
+        label: String?)
+    {
         self.sessionkey = sessionkey
         self.message = message
         self.label = label
@@ -2579,8 +2579,8 @@ public struct ChatEvent: Codable, Sendable {
         message: AnyCodable?,
         errormessage: String?,
         usage: AnyCodable?,
-        stopreason: String?,
-    ) {
+        stopreason: String?)
+    {
         self.runid = runid
         self.sessionkey = sessionkey
         self.seq = seq
@@ -2613,8 +2613,8 @@ public struct UpdateRunParams: Codable, Sendable {
         sessionkey: String?,
         note: String?,
         restartdelayms: Int?,
-        timeoutms: Int?,
-    ) {
+        timeoutms: Int?)
+    {
         self.sessionkey = sessionkey
         self.note = note
         self.restartdelayms = restartdelayms
@@ -2633,8 +2633,8 @@ public struct TickEvent: Codable, Sendable {
     public let ts: Int
 
     public init(
-        ts: Int,
-    ) {
+        ts: Int)
+    {
         self.ts = ts
     }
 
@@ -2649,8 +2649,8 @@ public struct ShutdownEvent: Codable, Sendable {
 
     public init(
         reason: String,
-        restartexpectedms: Int?,
-    ) {
+        restartexpectedms: Int?)
+    {
         self.reason = reason
         self.restartexpectedms = restartexpectedms
     }

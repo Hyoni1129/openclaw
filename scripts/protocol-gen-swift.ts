@@ -131,16 +131,18 @@ function emitStruct(name: string, schema: JsonSchema): string {
       codingKeys.push(`        case ${propName}`);
     }
   }
+  const paramLines = Object.entries(props).map(([key, prop]) => {
+    const propName = safeName(key);
+    const req = required.has(key);
+    return `        ${propName}: ${swiftType(prop, true)}${req ? "" : "?"}`;
+  });
+  if (paramLines.length > 0) {
+    paramLines[paramLines.length - 1] = `${paramLines[paramLines.length - 1]})`;
+  }
   lines.push(
     "\n    public init(\n" +
-      Object.entries(props)
-        .map(([key, prop]) => {
-          const propName = safeName(key);
-          const req = required.has(key);
-          return `        ${propName}: ${swiftType(prop, true)}${req ? "" : "?"}`;
-        })
-        .join(",\n") +
-      ",\n    ) {\n" +
+      paramLines.join(",\n") +
+      "\n    {\n" +
       Object.entries(props)
         .map(([key]) => {
           const propName = safeName(key);
