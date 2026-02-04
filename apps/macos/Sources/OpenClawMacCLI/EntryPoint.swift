@@ -1,41 +1,42 @@
 import Foundation
 
 private struct RootCommand {
-    var name: String
-    var args: [String]
+  var name: String
+  var args: [String]
 }
 
 @main
 struct OpenClawMacCLI {
-    static func main() async {
-        let args = Array(CommandLine.arguments.dropFirst())
-        let command = parseRootCommand(args)
-        switch command?.name {
-        case nil:
-            printUsage()
-        case "-h", "--help", "help":
-            printUsage()
-        case "connect":
-            await runConnect(command?.args ?? [])
-        case "discover":
-            await runDiscover(command?.args ?? [])
-        case "wizard":
-            await runWizardCommand(command?.args ?? [])
-        default:
-            fputs("openclaw-mac: unknown command\n", stderr)
-            printUsage()
-            exit(1)
-        }
+  static func main() async {
+    let args = Array(CommandLine.arguments.dropFirst())
+    let command = parseRootCommand(args)
+    switch command?.name {
+    case nil:
+      printUsage()
+    case "-h", "--help", "help":
+      printUsage()
+    case "connect":
+      await runConnect(command?.args ?? [])
+    case "discover":
+      await runDiscover(command?.args ?? [])
+    case "wizard":
+      await runWizardCommand(command?.args ?? [])
+    default:
+      fputs("openclaw-mac: unknown command\n", stderr)
+      printUsage()
+      exit(1)
     }
+  }
 }
 
 private func parseRootCommand(_ args: [String]) -> RootCommand? {
-    guard let first = args.first else { return nil }
-    return RootCommand(name: first, args: Array(args.dropFirst()))
+  guard let first = args.first else { return nil }
+  return RootCommand(name: first, args: Array(args.dropFirst()))
 }
 
 private func printUsage() {
-    print("""
+  print(
+    """
     openclaw-mac
 
     Usage:
